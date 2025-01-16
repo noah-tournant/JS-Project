@@ -3,39 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Galerie</title>
-    <div id="info"></div>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-      }
-      .gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 16px;
-        padding: 16px;
-      }
-      .gallery img {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      }
-      #loader {
-        text-align: center;
-        margin: 20px 0;
-        font-size: 18px;
-        color: #555;
-      }
-    </style>
+    <title>Recherche de Films</title>
+    <link rel="stylesheet" href="../CSS/search.css" />
   </head>
   <body>
-    <h1 style="text-align: center">Galerie</h1>
-    <div class="gallery" id="gallery"></div>
-    <div id="loader" style="display: none">Chargement en cours...</div>
-
-    <script src="JS/search.js"></script>
+    <header>
+      <a href="index.html" class="back-button">Retour à l'accueil</a>
+      <h1>Recherche de Films</h1>
+    </header>
+    <main>
+      <input type="text" id="search-bar" placeholder="Rechercher un film..." />
+      <div id="search-results"></div>
+      <button id="load-more" style="display: none;">Charger plus de résultats</button>
+    </main>
+    <script src="../JS/search.js"></script>
   </body>
 </html>

@@ -1,58 +1,62 @@
-const gallery = document.getElementById("gallery");
-const loader = document.getElementById("loader");
-const infos = document.getElementById("info");
-
+const apiKey = '19bb48ba';
 let currentPage = 1;
-const imagesPerPage = 10;
-let isLoading = false;
+let currentQuery = '';
 
-async function loadImages() {
-  if (isLoading) return;
+const searchBar = document.getElementById('search-bar');
+const searchResults = document.getElementById('search-results');
+const loadMoreButton = document.getElementById('load-more');
 
-  loader.style.display = "block";
-  isLoading = true;
-
-  try {
-    const response = await fetch(
-      `https://picsum.photos/v2/list?page=${currentPage}&limit=${imagesPerPage}`
-    );
-    const images = await response.json();
-
-    images.forEach((image) => {
-      const img = document.createElement("img");
-      img.src = `https://picsum.photos/id/${image.id}/400/300`;
-      img.alt = `Image by ${image.author}`;
-      img.title = `Image by ${image.author}`;
-
-      img.addEventListener("click", () => {
-        info.innerHTML = `
-                    <strong>Auteur :</strong> ${image.author} <br>
-                    <strong>ID :</strong> ${image.id} <br>
-                    <a href="${image.url}" target="_blank">Lien original</a>
-                `;
-        info.style.padding = "16px";
-        info.style.borderBottom = "1px solid #ddd";
-        info.style.background = "#f9f9f9";
-      });
-
-      gallery.appendChild(img);
-    });
-
-    currentPage++;
-  } catch (error) {
-    console.error("Erreur lors du chargement des images :", error);
-  } finally {
-    loader.style.display = "none";
-    isLoading = false;
-  }
-}
-
-window.addEventListener("scroll", () => {
-  if (isLoading) return;
-
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
-    loadImages();
+searchBar.addEventListener('input', () => {
+  currentQuery = searchBar.value;
+  currentPage = 1;
+  searchResults.innerHTML = '';
+  if (currentQuery) {
+    fetchMovies(currentQuery, currentPage);
   }
 });
 
-loadImages();
+loadMoreButton.addEventListener('click', () => {
+  if (currentQuery) {
+    fetchMovies(currentQuery, ++currentPage);
+  }
+});
+
+async function fetchMovies(query, page) {
+  try {
+    const url = `https://www.omdbapi.com/?apikey=${apiKey}&s=${query}&page=${page}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    if (data.Response === "True") {
+      displayMovies(data.Search);
+      loadMoreButton.style.display = 'block';
+    } else {
+      console.error("Erreur lors de la récupération des films :", data.Error);
+      loadMoreButton.style.display = 'none';
+    }
+  } catch (error) {
+    console.error("Erreur lors de la récupération des films :", error);
+  }
+}
+
+function displayMovies(movies) {
+  movies.forEach(movie => {
+    const filmElement = document.createElement('div');
+    filmElement.classList.add('film');
+
+    const linkElement = document.createElement('a');
+    linkElement.href = `movie.html?imdbID=${movie.imdbID}`;
+
+    const imgElement = document.createElement('img');
+    imgElement.src = movie.Poster !== "N/A" ? movie.Poster : 'placeholder.jpg';
+    imgElement.alt = movie.Title;
+
+    const titleElement = document.createElement('h3');
+    titleElement.textContent = movie.Title;
+
+    filmElement.appendChild(imgElement);
+    filmElement.appendChild(linkElement);
+    filmElement.appendChild(titleElement);
+    
+    searchResults.appendChild(filmElement);
+  });
+}
