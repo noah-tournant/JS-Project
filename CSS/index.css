@@ -87,10 +87,3 @@ main {
   transition: transform 0.3s;
  
 }
-
-footer {
-  background-color: #3c096c;
-  text-align: center;
-  padding: 1rem;
-  color: #e0aaff;
-}
