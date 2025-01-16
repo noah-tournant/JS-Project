@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Exemple de données dynamiques
     const filmData = {
       title: "Inception",
-      poster: "https://via.placeholder.com/300x450", // Remplacez par une vraie URL
+      poster: "../Assets/bleu.jpg", // Remplacez par une vraie URL
       summary: "Un voleur qui dérobe des secrets à l'aide de la technologie d'infiltration des rêves est chargé d'une mission presque impossible.",
       genre: "Science-fiction, Action",
       actors: "Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page",
