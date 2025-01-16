@@ -5,6 +5,21 @@ document
     this.style.transition = "transform 0.3s";
   });
 
+document
+  .querySelector(".rechercher-film")
+  .addEventListener("mouseout", function () {
+    this.style.transform = "scale(1)";
+    this.style.transition = "transform 0.3s";
+  });
+
+document.querySelector(".voir-plus").addEventListener("mouseover", function () {
+  this.style.transform = "scale(1.1)";
+  this.style.transition = "transform 0.3s";
+});
+document.querySelector(".voir-plus").addEventListener("mouseout", function () {
+  this.style.transform = "scale(1)";
+  this.style.transition = "transform 0.3s";
+});
 // Animation pour le bouton "Voir plus de films"
 document.querySelector(".voir-plus").addEventListener("click", function () {
   this.innerText = "Chargement...";
