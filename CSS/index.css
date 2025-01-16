@@ -69,8 +69,15 @@ main {
 }
 
 .film img {
-  max-width: 100%;
+  width: 80%;
+  height: 80%;
+  object-fit: cover;
+  object-fit: cover;
   border-radius: 8px;
+}
+.film:hover {
+  background-color: #3c096c; /* Changement de couleur au survol */
+  transform: scale(1.05); /* Effet d'agrandissement */
 }
 .recherche-film {
   text-align: center;
