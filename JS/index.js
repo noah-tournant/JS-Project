@@ -37,8 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchTrendingMovies();
 });
 
-document.querySelector(".rechercher-film").addEventListener("mouseover", function () {
+
+document.querySelector(".voir-plus").addEventListener("mouseover", function () {
   this.style.transform = "scale(1.1)";
+  this.style.transition = "transform 0.3s";
+});
+document.querySelector(".voir-plus").addEventListener("mouseout", function () {
+  this.style.transform = "scale(1)";
   this.style.transition = "transform 0.3s";
 });
 

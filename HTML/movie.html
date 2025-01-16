@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie</title>
+  <link rel="stylesheet" href="../CSS/movie.css">
+</head>
+<body>
+  <header>
+    <button id="back-button" onclick="window.history.back()">Retour</button>
+    <h1 id="film-title">Titre du Film</h1>
+  </header>
+
+  <main>
+    <section class="film-details">
+      <img id="film-poster" src="../Assets/bleu.jpg" alt="Poster du film" class="poster">
+      <div class="details">
+        <p id="film-summary">Résumé du film:</p>
+        <p id="film-genre">Genre : </p>
+        <p id="film-actors">Acteurs :</p>
+        <p id="film-rating">Note :</p>
+        <p id="film-dvd-release">Sortie DVD : <span id="dvd-release-date"></span></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="../JS/movie.js"></script>
+</body>
+</html>
