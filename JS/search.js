@@ -40,6 +40,7 @@ async function fetchMovies(query, page) {
 
 function displayMovies(movies) {
   movies.forEach(movie => {
+    if (movie.Type === 'movie') {
     const filmElement = document.createElement('div');
     filmElement.classList.add('film');
 
@@ -58,5 +59,6 @@ function displayMovies(movies) {
     filmElement.appendChild(titleElement);
     
     searchResults.appendChild(filmElement);
+    }
   });
 }
