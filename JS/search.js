@@ -41,24 +41,34 @@ async function fetchMovies(query, page) {
 function displayMovies(movies) {
   movies.forEach(movie => {
     if (movie.Type === 'movie') {
-    const filmElement = document.createElement('div');
-    filmElement.classList.add('film');
+      const filmElement = document.createElement('div');
+      filmElement.classList.add('film');
 
-    const linkElement = document.createElement('a');
-    linkElement.href = `movie.html?imdbID=${movie.imdbID}`;
+      const linkElement = document.createElement('a');
+      linkElement.href = 'movie.html';
+      linkElement.addEventListener('click', (event) => {
+        event.preventDefault();
+        const movieData = {
+          title: movie.Title,
+          poster: movie.Poster,
+          imdbID: movie.imdbID
+        };
+        localStorage.setItem('selectedMovie', JSON.stringify(movieData));
+        window.location.href = 'movie.html';
+      });
 
-    const imgElement = document.createElement('img');
-    imgElement.src = movie.Poster !== "N/A" ? movie.Poster : 'placeholder.jpg';
-    imgElement.alt = movie.Title;
+      const imgElement = document.createElement('img');
+      imgElement.src = movie.Poster !== "N/A" ? movie.Poster : 'placeholder.jpg';
+      imgElement.alt = movie.Title;
 
-    const titleElement = document.createElement('h3');
-    titleElement.textContent = movie.Title;
+      const titleElement = document.createElement('h3');
+      titleElement.textContent = movie.Title;
 
-    filmElement.appendChild(imgElement);
-    filmElement.appendChild(linkElement);
-    filmElement.appendChild(titleElement);
-    
-    searchResults.appendChild(filmElement);
+      linkElement.appendChild(imgElement);
+      filmElement.appendChild(linkElement);
+      filmElement.appendChild(titleElement);
+
+      searchResults.appendChild(filmElement);
     }
   });
 }
