@@ -61,7 +61,6 @@ body {
   margin: 10px;
   padding: 10px;
   width: 200px;
-  height: 350px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -76,27 +75,24 @@ body {
   background-color: #3c096c;
 }
 
-.film img {
-  width: 100%;
-  height: 70%; /* Ajuste pour occuper l'espace disponible */
-  object-fit: cover;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
 .film h3 {
   font-size: 18px;
   margin: 10px 0;
 }
 
-.film a {
-  text-decoration: none; /* Supprime le soulignement */
-  color: inherit; /* Garde la couleur héritée */
+.film img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
-.film a:hover {
-  color: #9d4edd; /* Change la couleur au survol */
+
+.film >a {
+  text-decoration: none; 
 }
+
 
 #load-more {
   display: block;
@@ -115,59 +111,3 @@ body {
   background-color: #9d4edd;
   transform: scale(1.05);
 }
-
-  .film  {
-    background-color: #240046;
-    color: #e0aaff;
-    cursor: pointer;
-    border-radius: 5px;
-    margin: 10px;
-    padding: 10px;
-    width: 200px; 
-   height: 350px;
-    text-align: center;
-    display: flex; 
-    flex-direction:column; 
-    align-items: center; 
-    justify-content: space-between;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease,background-color 0.3s ease;
-    
-  }
-
-  
-  .film:hover {
-    transform: scale(1.05);
-    background-color: #3c096c;
-  }
-  
-  .film img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .film h3 {
-    font-size: 18px;
-    margin: 10px 0;
-  }
-  
-  
-  #load-more {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  #load-more:hover {
-    background-color: #0056b3;
-  }
