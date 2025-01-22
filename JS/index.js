@@ -2,24 +2,18 @@ const apiKey = '19bb48ba';
 const year = '2024';
 const url = `https://www.omdbapi.com/?apikey=${apiKey}&y=${year}&s=movie`;
 let currentPage = 1;
+let displayedMoviesCount = 0;
+let allMovies = [];
 
-async function fetchTrendingMovies(page) {
-  try {
-    const response = await fetch(`${url}&page=${page}`);
-    const data = await response.json();
-    if (data.Response === "True") {
-      updateMoviePosters(data.Search);
-    } else {
-      console.error("Erreur lors de la récupération des films :", data.Error);
-    }
-  } catch (error) {
-    console.error("Erreur lors de la récupération des films :", error);
-  }
-}
-
-function updateMoviePosters(movies) {
+function updateMoviePosters(movies, append = false) {
   const filmContainer = document.getElementById("films-container");
-  movies.forEach(movie => {
+  if (!append) {
+    filmContainer.innerHTML = ''; // Clear any existing content
+    displayedMoviesCount = 0;
+  }
+
+  const moviesToDisplay = movies.slice(displayedMoviesCount, displayedMoviesCount + (append ? 9 : 3));
+  moviesToDisplay.forEach(movie => {
     const filmElement = document.createElement("div");
     filmElement.classList.add("film");
 
@@ -54,15 +48,33 @@ function updateMoviePosters(movies) {
     filmContainer.appendChild(filmElement);
   });
 
-  const loadMoreButton = document.querySelector(".voir-plus");
-  loadMoreButton.style.display = "block";
+  displayedMoviesCount += moviesToDisplay.length;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   fetchTrendingMovies(currentPage);
 });
 
-document.querySelector(".voir-plus").addEventListener("click", function () {
-  this.style.display = "none"; // Masquer le bouton pendant le chargement
-  fetchTrendingMovies(++currentPage);
+document.querySelector(".voir-plus").addEventListener("click", () => {
+  currentPage++;
+  fetchTrendingMovies(currentPage, true);
 });
+
+async function fetchTrendingMovies(page, append = false) {
+  try {
+    const response = await fetch(`${url}&page=${page}`);
+    const data = await response.json();
+    if (data.Response === "True") {
+      if (append) {
+        allMovies = allMovies.concat(data.Search);
+      } else {
+        allMovies = data.Search;
+      }
+      updateMoviePosters(allMovies, append);
+    } else {
+      console.error("Erreur lors de la récupération des films :", data.Error);
+    }
+  } catch (error) {
+    console.error("Erreur lors de la récupération des films :", error);
+  }
+}
