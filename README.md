@@ -8,7 +8,7 @@ Pour installer et exécuter ce projet localement, suivez les étapes ci-dessous 
 
 1. Clonez le dépôt :
     ```bash
-    git clone https://github.com/votre-utilisateur/JS-Project.git
+    git clone https://github.com/noah-tournant/JS-Project.git
     ```
 2. Accédez au répertoire du projet :
     ```bash
