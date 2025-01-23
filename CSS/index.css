@@ -7,7 +7,6 @@ body {
 }
 
 header {
-  background-color: #3c096c;
   padding: 1rem;
   display: flex;
   text-align: center;
@@ -40,7 +39,6 @@ main {
 }
 
 .films-populaires > button {
-
   display: inline-block;
   background-color: #7b2cbf;
   border: none;
@@ -59,29 +57,46 @@ main {
   transform: scale(1.1); 
 }
 
-
 .film {
   background-color: #240046;
-  border-radius: 8px;
-  width: 300px;
-  margin:10px;
-  display: inline-block;
-  vertical-align: top;
-  transition: transform 0.3s ease;
+  color: #e0aaff;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 10px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  display: inline-block; 
+  width: 500px; 
+}
+
+.film:hover {
+  transform: scale(1.05);
+  background-color: #3c096c;
+}
+
+.film h3 {
+  font-size: 18px;
+  margin: 10px 0;
+  text-align: center;
 }
 
 .film img {
   width: 100%;
-  height: auto;
-}
-.film:hover {
-  background-color: #3c096c; 
-  transform: scale(1.05); 
+  height: 300px; 
+  object-fit: cover;
+  border-radius: 5px;
+  display: block;
 }
 
-.film h3, .film p {
-  margin: 5px 0;
+.film > a {
+  text-decoration: none;
+  display: block;
 }
+
 .recherche-film {
   text-align: center;
   margin-top: 2rem;
@@ -103,4 +118,12 @@ main {
 .rechercher-film:hover {
   background-color: #9d4edd;
   transform: scale(1.05); 
+}
+
+#search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px; 
 }
